@@ -35,3 +35,24 @@ SP500 is a weighted index to track performance of the US stock market, based on 
 Finally, after all the above preparation, now we can try to quantify the impact of our sentiment scores on the return of stocks. Using the last part of code in this script, we standardize time series sentiment scores to make sure they are normally distributed. Here’s what I’m seeing: 
 The Spearman's rank correlation between sentiment score and annual return is as small as 0.13. Data used for correlation is saved in “sentiment_ret.csv”.
 Building a linear regression model based on CAMP model, result is shown below. Risk free returns and average market risk premiums during the past years in the US could be found in “CAPM_rets.csv”.
+
+## Part Four - Potential research in the future
+1. Average returns in different quantile bucks for sentiment scores (10th, 20th, …)
+2. Correlation between number of words used in annual report and the sentiment of that text.
+3. Include more factors to improve the regression model (Adj R-squared here is just 0.124, a lot room for improvements!)
+4. Other data sources (e.g. 10Q reports, other parts in 10K reports, etc.) that may generate more trustworthy sentiment. 
+
+
+### Appendix - files in the folder
+1. available_company.csv - list of companies available for further analysis due to missing reports in EDGAR database
+2. available_prices.csv - raw price data downloaded from Yahoo Finance API yfinance using Python
+3. CAPM_rets.csv - risk free returns and average market risk premiums needed for CAPM model
+4. EDGAR_files.zip - 10K reports downloaded from EDGAR database
+5. final20221001 - final table ready for regression analysis 
+6. FinBERT-demo.ipynb - demo for FinBERT classification model
+7. sentiment_ret.csv - standardized sentiment scores and annual returns, used to calculate Spearman's rank correlation
+8. strategy20221001.csv - companies with report issued dates, business date after a month and stock price on that trading date
+9. strategy20221001.py - 2nd script to combine sentiment scores data with pricing data, as well as all analysis performed in this project
+10. tbl_available_price20220913.csv -  transformed table with pricing data for each company, needed to merge with ts_sentiment table
+11. ts_sentiment.csv - panel data with sentiment score for each company each year
+12. ts_sentiment20220913.py - script to input 10K text files and generate sentiment scores
